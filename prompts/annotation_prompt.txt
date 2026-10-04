@@ -1,0 +1,151 @@
+You are validating one entry from a Telugu culture-specific dictionary.
+
+Your task is to evaluate the dictionary entry according to the rules below.
+
+IMPORTANT:
+- Do not modify the source data.
+- Evaluate the intended meaning of the source term.
+- If the Telugu source contains an OCR error, mention the likely correct form in comments, but do not change source_word.
+- Return ONLY valid JSON.
+- Do not add explanations outside the JSON.
+- Use exactly the requested fields.
+
+ANNOTATION FIELDS:
+
+1. annotator_id
+Use the annotator ID provided in the input.
+
+2. is_culture_specific
+Allowed values:
+- "yes"
+- "no"
+- "borderline"
+
+Use "yes" for:
+- deity
+- religious concept
+- place
+- epic figure
+- culturally specific object
+- title
+- ritual
+- classical/epic allusion
+- traditional unit of measure
+
+Use "no" for:
+- ordinary vocabulary
+- common nouns
+- generic verbs
+- plain descriptive phrases
+
+Use "borderline" when it is genuinely arguable.
+
+Use this test:
+Would a competent translator with no knowledge of Indian culture be likely to get this wrong?
+If not, it is probably "no".
+
+3. target_word_correct
+Score the English target rendering:
+
+5 = standard scholarly rendering; an expert would use it.
+4 = acceptable and recognisable, but not the most usual rendering.
+3 = understandable but weak, literal, generic, or clumsy.
+2 = misleading or wrong in a way that could hurt the metric.
+1 = not a rendering, bare romanization with no meaning, or incorrect.
+
+4. gloss_accuracy
+Score the supplied gloss:
+
+5 = accurate, specific, complete, and correctly describes the tradition/cultural role.
+4 = correct substance with minor imprecision.
+3 = partly correct but misses something important or is too vague.
+2 = contains a real factual error.
+1 = wrong or so vague that it explains nothing.
+
+5. aspect_correct
+Check whether the supplied culture_aspect is correct.
+
+Allowed Nida categories:
+
+- "Ecological Culture" = geography, climate, landscapes, flora, fauna
+- "Material Culture" = artefacts, weapons, tools, food, clothing, buildings, objects
+- "Social Culture" = titles, ranks, kinship, customs, ceremonies, social roles
+- "Religious Culture" = deities, Vedic/Puranic concepts, rituals, cosmology, scripture
+- "Linguistic Culture" = idioms, allusions, proverbs, poetry, metre, wordplay
+
+Return:
+- "yes" if the existing aspect is correct.
+- "no" if it is incorrect.
+
+6. suggested_aspect
+Only provide this when aspect_correct is "no".
+
+Use exactly one of:
+- "Ecological Culture"
+- "Material Culture"
+- "Social Culture"
+- "Religious Culture"
+- "Linguistic Culture"
+
+Otherwise return an empty string.
+
+7. suggested_target
+Only provide this when target_word_correct is 1 or 2.
+
+Give a better English rendering.
+
+Otherwise return an empty string.
+
+8. comments
+Give a concise explanation when useful.
+
+Comments are especially important when:
+- is_culture_specific is "borderline"
+- is_culture_specific is "no"
+- the source appears corrupted by OCR
+- the target is misleading
+- the gloss is inaccurate
+- the culture aspect is incorrect
+
+For OCR errors:
+- Do not modify source_word.
+- Mention the likely correct source form in comments if it can be determined.
+- The OCR problem should not automatically lower target_word_correct or gloss_accuracy if the intended term and its explanation are otherwise correct.
+
+IMPORTANT CONDITIONAL RULES:
+
+If is_culture_specific = "no":
+- target_word_correct may be ""
+- gloss_accuracy may be ""
+- aspect_correct should still be evaluated
+- suggested_aspect should only be supplied if aspect_correct = "no"
+
+If is_culture_specific = "yes" or "borderline":
+- target_word_correct must be 1–5
+- gloss_accuracy must be 1–5
+- aspect_correct must be "yes" or "no"
+
+If target_word_correct is 1 or 2:
+- suggested_target is required
+
+If target_word_correct is 3, 4, or 5:
+- suggested_target must be ""
+
+If aspect_correct = "no":
+- suggested_aspect is required
+
+If aspect_correct = "yes":
+- suggested_aspect must be ""
+
+OUTPUT FORMAT:
+
+{
+  "annotator_id": "",
+  "is_culture_specific": "",
+  "target_word_correct": "",
+  "gloss_accuracy": "",
+  "aspect_correct": "",
+  "suggested_aspect": "",
+  "suggested_target": "",
+  "comments": ""
+}

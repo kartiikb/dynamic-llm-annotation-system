@@ -1,0 +1,74 @@
+{
+  "input_fields": {
+    "id": "row_id",
+    "source": "source_text",
+    "translation": "translation",
+    "context": "kanda"
+  },
+
+  "output_fields": {
+    "annotator_id": {
+      "type": "fixed",
+      "value": "row_id"
+    },
+
+    "contains_culture_item": {
+      "type": "categorical",
+      "allowed_values": [
+        "yes",
+        "no",
+        "unsure"
+      ]
+    },
+
+    "cultural_fidelity": {
+      "type": "score",
+      "allowed_values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        "NA"
+      ]
+    },
+
+    "accuracy": {
+      "type": "score",
+      "allowed_values": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+
+    "fluency": {
+      "type": "score",
+      "allowed_values": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+
+    "error_type": {
+      "type": "categorical",
+      "allowed_values": [
+        "Substitution",
+        "Erasure",
+        "Dilution",
+        "Distortion",
+        "Imperfection",
+        "None"
+      ]
+    },
+
+    "comments": {
+      "type": "text"
+    }
+  }
+}

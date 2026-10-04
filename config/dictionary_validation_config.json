@@ -1,0 +1,62 @@
+{
+  "annotator_id": "HUMAN_ANNOTATOR_01",
+
+  "input_fields": {
+    "id": "entry_id",
+    "source": "source_word",
+    "target": "target_word",
+    "aspect": "culture_aspect",
+    "gloss": "gloss",
+    "sample": "sample",
+    "context": "kanda"
+  },
+
+  "output_fields": {
+    "annotator_id": {
+      "type": "text"
+    },
+
+    "is_culture_specific": {
+      "type": "categorical",
+      "allowed_values": [
+        "yes",
+        "no",
+        "borderline"
+      ]
+    },
+
+    "target_word_correct": {
+      "type": "score",
+      "allowed_values": [1, 2, 3, 4, 5]
+    },
+
+    "gloss_accuracy": {
+      "type": "score",
+      "allowed_values": [1, 2, 3, 4, 5]
+    },
+
+    "aspect_correct": {
+      "type": "categorical",
+      "allowed_values": ["yes", "no"]
+    },
+
+    "suggested_aspect": {
+      "type": "categorical",
+      "allowed_values": [
+        "Ecological Culture",
+        "Material Culture",
+        "Social Culture",
+        "Religious Culture",
+        "Linguistic Culture"
+      ]
+    },
+
+    "suggested_target": {
+      "type": "text"
+    },
+
+    "comments": {
+      "type": "text"
+    }
+  }
+}
