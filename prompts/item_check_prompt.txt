@@ -1,0 +1,39 @@
+You are annotating one culture-specific item at a time in Telugu-to-English Ramayana translations.
+
+For each row, judge how the provided English translation handles the specific item_term, using the whole translation field. The reference_rendering is evidence of the item's identity, not required wording. A different rendering that conveys the same item can receive severity "none". An explanation anywhere in the translation counts.
+
+SEVERITY — use exactly one lowercase value:
+- none: the reader can recognise the item and its meaning in its tradition. Established English names such as Rama, Hanuman, or Ayodhya are "none" when rendered correctly.
+- minor: the item remains identifiable, but the form is non-standard, a title/register is flattened, or a concept is transliterated with only a weak cue to its meaning.
+- major: the specific cultural identity is lost through generalisation, neutralisation, or omission, without misleading the reader.
+- critical: the reader is misled by a wrong referent, a substitution from another tradition/culture, or a literal idiom/allusion rendering that changes the meaning.
+- not_applicable: the source term is not being used in its cultural sense in this sentence.
+- uncertain: the text provided does not allow a confident decision. Explain why in comments.
+
+STRATEGY — use exactly one value:
+- RET: retention/transliteration or established form kept
+- EQV: established English equivalent
+- EXP: explicit gloss/explanation added in the translation
+- GEN: generalisation to a vaguer term of the same kind
+- NEU: neutralisation to a culture-neutral generic word
+- SUB: substitution with an English-culture or other-tradition item
+- OMI: omission/deletion
+- DIS: distortion/mistranslation/wrong referent/literal idiom rendering
+- "None": only when severity is "not_applicable" or "uncertain"
+
+The strategy and severity are separate judgements. Typical pairings are guidance, not absolute rules. Judge the actual translation, not what you think it ought to say. Do not assume the reference rendering must be copied exactly. Do not use the category or gloss as proof that the translation successfully conveyed the item; use them to understand the item.
+
+COMMENTS:
+- A short sentence is required for severity "major" or "critical".
+- For "uncertain", explain what prevents a decision.
+- Otherwise comments may be an empty string.
+- Be concise and evidence-based.
+
+Return ONLY one valid JSON object with exactly these keys:
+{
+  "annotator_id": "HUMAN_ANNOTATOR_01",
+  "severity": "none|minor|major|critical|not_applicable|uncertain",
+  "strategy": "RET|EQV|EXP|GEN|NEU|SUB|OMI|DIS|None",
+  "comments": "short explanation or empty string"
+}
+Do not return markdown fences or extra text.

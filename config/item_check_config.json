@@ -1,0 +1,42 @@
+{
+  "annotator_id": "HUMAN_ANNOTATOR_01",
+  "model": "openai/gpt-oss-120b",
+  "max_api_attempts_per_row": 2,
+  "input_file": "data/CIFE_item_check_telugu.json",
+  "output_file": "output/CIFE_item_check_telugu_annotated.json",
+  "prompt_file": "prompts/item_check_prompt.txt",
+  "input_fields": [
+    "check_id",
+    "source_text",
+    "translation",
+    "item_term",
+    "reference_rendering",
+    "category",
+    "gloss"
+  ],
+  "annotation_fields": [
+    "annotator_id",
+    "severity",
+    "strategy",
+    "comments"
+  ],
+  "severity_values": [
+    "none",
+    "minor",
+    "major",
+    "critical",
+    "not_applicable",
+    "uncertain"
+  ],
+  "strategy_values": [
+    "RET",
+    "EQV",
+    "EXP",
+    "GEN",
+    "NEU",
+    "SUB",
+    "OMI",
+    "DIS",
+    "None"
+  ]
+}
